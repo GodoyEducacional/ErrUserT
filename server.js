@@ -106,7 +106,9 @@ app.post("/auth/login", async (req, res) => {
   const user = await User.findOne({ email: email }); // Busca o usuario no banco
 
   if (!user) {
-    return res.status(404).json({ msg: "Usuário não encontrado! Por favor faça o Cadastro" });
+    return res
+      .status(404)
+      .json({ msg: "Usuário não encontrado! Por favor faça o Cadastro" });
   }
 
   const checkPassword = await bcrypt.compare(password, user.password);
@@ -138,7 +140,7 @@ const dbPassword = process.env.DB_PASS;
 
 mongoose
   .connect(
-    `mongodb+srv://${dbUser}:${dbPassword}@clusterapi.mmlf2.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAPI`
+    `mongodb+srv://${dbUser}:${dbPassword}@clusterapi.h93mb.mongodb.net/?appName=ClusterAPI`
   )
   .then(() => {
     app.listen(3000);
